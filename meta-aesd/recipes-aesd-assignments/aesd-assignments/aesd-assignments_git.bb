@@ -4,11 +4,11 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda
 
 # TODO: Set this  with the path to your assignments rep.  Use ssh protocol and see lecture notes
 # about how to setup ssh-agent for passwordless access
-SRC_URI = "https://github.com/cu-ecen-aeld/assignments-3-and-later-PilotChalkanov.git;protocol=https"
+SRC_URI = "git://github.com/cu-ecen-aeld/assignments-3-and-later-PilotChalkanov.git;protocol=https"
 
 PV = "1.0+git${SRCPV}"
 # TODO: set to reference a specific commit hash in your assignment repo
-SRCREV = "cb4286005c383560f627c3f6bc27107b09233977"
+SRCREV = "732af34f53939aa3567bf710ee992a1ab6822ac7"
 
 # This sets your staging directory based on WORKDIR, where WORKDIR is defined at 
 # https://docs.yoctoproject.org/ref-manual/variables.html?highlight=workdir#term-WORKDIR
