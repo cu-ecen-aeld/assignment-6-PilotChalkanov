@@ -39,7 +39,11 @@ do_configure () {
 }
 
 do_compile () {
+    # Ensure required compatibility headers exist in the scull source dir
+    install -D -m 0644 ${WORKDIR}/access_ok_version.h ${S}/scull/access_ok_version.h
+    install -D -m 0644 ${WORKDIR}/proc_ops_version.h ${S}/scull/proc_ops_version.h
 	oe_runmake
+
 }
 
 do_install() {
