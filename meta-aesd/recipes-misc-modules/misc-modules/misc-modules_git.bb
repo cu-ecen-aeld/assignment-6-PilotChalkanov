@@ -13,6 +13,8 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=f098732a73b5f6f3430472f5b094ffdb"
 
 SRC_URI = "git://git@github.com/cu-ecen-aeld/assignment-7-PilotChalkanov.git;protocol=ssh;branch=main \
            file://misc-start-stop \
+           file://access_ok_version.h \
+           file://proc_ops_version.h \
            "
 
 # Modify these as desired
