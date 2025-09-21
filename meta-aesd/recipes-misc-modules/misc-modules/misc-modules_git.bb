@@ -19,7 +19,7 @@ SRC_URI = "git://git@github.com/cu-ecen-aeld/assignment-7-PilotChalkanov.git;pro
 
 # Modify these as desired
 PV = "1.0+git${SRCPV}"
-SRCREV = "5c3cae6ddc96b8645dfa6f6bc4ddbba08aae8789"
+SRCREV = "5cc82b31e82fe0b9af997eac1f3f2c2ed380da3c"
 
 S = "${WORKDIR}/git"
 
@@ -42,8 +42,8 @@ do_configure () {
 
 do_compile () {
     # Ensure required compatibility headers exist in the scull source dir
-    install -D -m 0644 ${WORKDIR}/access_ok_version.h ${S}/scull/access_ok_version.h
-    install -D -m 0644 ${WORKDIR}/proc_ops_version.h ${S}/scull/proc_ops_version.h
+    install -D -m 0644 ${WORKDIR}/access_ok_version.h ${S}/misc-modules/access_ok_version.h
+    install -D -m 0644 ${WORKDIR}/proc_ops_version.h ${S}/misc-modules/proc_ops_version.h
 	oe_runmake
 
 }
@@ -54,7 +54,7 @@ do_install() {
       install -m 0755 ${S}/misc-modules/faulty.ko ${D}/lib/modules/${KERNEL_VERSION}/extra/
 
       install -d ${D}${sysconfdir}/init.d
-      install -m 0755 ${WORKDIR}/misc-modules-start-stop ${D}${sysconfdir}/init.d
+      install -m 0755 ${WORKDIR}/misc-start-stop ${D}${sysconfdir}/init.d
 
       install -d ${D}${bindir}
       install -m 0755 ${S}/misc-modules/module_load ${D}${bindir}
