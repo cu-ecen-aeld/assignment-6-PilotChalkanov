@@ -23,9 +23,8 @@ S = "${WORKDIR}/git"
 
 inherit module
 
-EXTRA_OEMAKE:append:task-install = " -C ${STAGING_KERNEL_DIR} M=${S}"
-EXTRA_OEMAKE += "KERNELDIR=${STAGING_KERNEL_DIR}"
-EXTRA_OEMAKE += " -C ${STAGING_KERNEL_DIR} M=${S}/scull"
+MODULE_SUBDIR = "scull"
+EXTRA_OEMAKE = "KERNELDIR=${STAGING_KERNEL_DIR} -C ${STAGING_KERNEL_DIR} M=${S}/${MODULE_SUBDIR}"
 
 inherit update-rc.d
 INITSCRIPT_PACKAGES = "${PN}"
@@ -34,14 +33,22 @@ INITSCRIPT_NAME:${PN} = "scull-start-stop.sh"
 FILES:${PN} += "${sysconfdir}/init.d/scull-start-stop.sh"
 FILES:${PN} += "${bindir}/scull_load ${bindir}/scull_unload"
 
+do_configure () {
+	:
+}
+
+do_compile () {
+	oe_runmake
+}
+
 do_install() {
-  install -d ${D}/lib/modules/${KERNEL_VERSION}/extra
-      install -m 0644 ${S}/scull/scull.ko ${D}/lib/modules/${KERNEL_VERSION}/extra/
+      install -d ${D}/lib/modules/${KERNEL_VERSION}/extra
+      install -m 0755 ${S}/misc-modules/misc-modules.ko ${D}/lib/modules/${KERNEL_VERSION}/extra/
 
       install -d ${D}${sysconfdir}/init.d
-      install -m 0755 ${WORKDIR}/scull-start-stop ${D}${sysconfdir}/init.d
+      install -m 0755 ${WORKDIR}/misc-modules-start-stop ${D}${sysconfdir}/init.d
 
       install -d ${D}${bindir}
-      install -m 0755 ${S}/scull/scull_load ${D}${bindir}
-      install -m 0755 ${S}/scull/scull_unload ${D}${bindir}
+      install -m 0755 ${S}/misc-modules/scull_load ${D}${bindir}
+      install -m 0755 ${S}/misc-modules/scull_unload ${D}${bindir}
 }
