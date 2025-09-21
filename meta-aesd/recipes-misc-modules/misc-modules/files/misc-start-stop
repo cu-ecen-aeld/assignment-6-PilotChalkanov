@@ -3,13 +3,13 @@
 case "$1" in
     start)
         echo "Starting scull modules"
-        cd /lib/modules/$(uname -r)/extra/
-        /usr/sbin/scull_load
+        /usr/bin/module_load hello
+        /usr/bin/module_load faulty
         ;;
     stop)
         echo "Stopping scull modules"
-        cd /lib/modules/$(uname -r)/extra/
-        /usr/sbin/scull_unload
+        /usr/bin/module_unload hello
+        /usr/bin/module_unload faulty
         ;;
     *)
         echo "Usage: $0 {start|stop}"
