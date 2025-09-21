@@ -12,7 +12,7 @@ LICENSE = "Unknown"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=f098732a73b5f6f3430472f5b094ffdb"
 
 SRC_URI = "git://git@github.com/cu-ecen-aeld/assignment-7-PilotChalkanov.git;protocol=ssh;branch=main \
-           file://misc-start-stop.sh \
+           file://misc-start-stop \
            "
 
 # Modify these as desired
@@ -29,9 +29,9 @@ EXTRA_OEMAKE = "KERNELDIR=${STAGING_KERNEL_DIR} -C ${STAGING_KERNEL_DIR} M=${S}/
 
 inherit update-rc.d
 INITSCRIPT_PACKAGES = "${PN}"
-INITSCRIPT_NAME:${PN} = "misc-start-stop.sh"
+INITSCRIPT_NAME:${PN} = "misc-start-stop"
 
-FILES:${PN} += "${sysconfdir}/init.d/misc-start-stop.sh"
+FILES:${PN} += "${sysconfdir}/init.d/misc-start-stop"
 FILES:${PN} += "${bindir}/module_load ${bindir}/module_unload"
 
 do_configure () {
