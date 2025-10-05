@@ -23,6 +23,7 @@ FILES:${PN} += "${bindir}/aesdsocket-start-stop"
 # TODO: customize these as necessary for any libraries you need for your application
 # (and remove comment)
 TARGET_LDFLAGS += "-pthread -lrt"
+TARGET_CFLAGS += "-DUSE_AESD_CHAR_DEVICE=1"
 
 # Start script stuff
 inherit update-rc.d
