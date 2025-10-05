@@ -11,7 +11,9 @@
 LICENSE = "Unknown"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=f098732a73b5f6f3430472f5b094ffdb"
 
-SRC_URI = "git@github.com:cu-ecen-aeld/assignments-3-and-later-PilotChalkanov.git;protocol=ssh;branch=main"
+SRC_URI = "git@github.com:cu-ecen-aeld/assignments-3-and-later-PilotChalkanov.git;protocol=ssh;branch=main \
+           file://aesdchar_start_stop.sh \
+           "
 
 # Modify these as desired
 PV = "1.0+git${SRCPV}"
