@@ -8,21 +8,24 @@
 # The following license files were not able to be identified and are
 # represented as "Unknown" below, you will need to check them yourself:
 #   LICENSE
-LICENSE = "Unknown"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=f098732a73b5f6f3430472f5b094ffdb"
+LICENSE = "MIT"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=8ed1a118f474eea5e159b560c339329b"
+INSANE_SKIP_${PN} += "license license-checksum"
+INSANE_SKIP_${PN} += "license"
 
-SRC_URI = "git://git@github.com:cu-ecen-aeld/assignments-3-and-later-PilotChalkanov.git;protocol=ssh;branch=feat/assignment8-chalkanov-partial-write \
+SRC_URI = "git://git@github.com/cu-ecen-aeld/assignments-3-and-later-PilotChalkanov.git;protocol=ssh;branch=main \
            file://aesdchar_start_stop.sh \
            "
 
 # Modify these as desired
 PV = "1.0+git${SRCPV}"
-SRCREV = "b432ce3df0d66f736393fc1f0b1c6b42525a5b74"
+SRCREV = "8a8484a11f4cd7f3f25ceed5f418a7c1c7a7eba8"
 
 S = "${WORKDIR}/git"
 
 inherit module
 
+RPROVIDES:${PN} += "kernel-module-aesdchar-${KERNEL_VERSION}"
 EXTRA_OEMAKE = "KERNELDIR=${STAGING_KERNEL_DIR} -C ${STAGING_KERNEL_DIR} M=${S}/aesd-char-driver"
 
 inherit update-rc.d
@@ -31,6 +34,7 @@ INITSCRIPT_NAME:${PN} = "aesdchar_start_stop"
 
 FILES:${PN} += "${sysconfdir}/init.d/aesdchar_start_stop"
 FILES:${PN} += "${bindir}/aesdchar_load ${bindir}/aesdchar_unload"
+FILES:${PN} += "${base_libdir}/modules/${KERNEL_VERSION}/extra/*"
 
 do_configure () {
 	:
@@ -45,7 +49,7 @@ do_install() {
       install -m 0644 ${S}/aesd-char-driver/*.ko ${D}/lib/modules/${KERNEL_VERSION}/extra/
 
       install -d ${D}${sysconfdir}/init.d
-      install -m 0755 ${WORKDIR}/aesdchar_start_stop.sh ${D}${sysconfdir}/init.d
+      install -m 0755 ${WORKDIR}/aesdchar_start_stop.sh ${D}${sysconfdir}/init.d/aesdchar_start_stop
 
       install -d ${D}${bindir}
       install -m 0755 ${S}/aesd-char-driver/aesdchar_load ${D}${bindir}/aesdchar_load
