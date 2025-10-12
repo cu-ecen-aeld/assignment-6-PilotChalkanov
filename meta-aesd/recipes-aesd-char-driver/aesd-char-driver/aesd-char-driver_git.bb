@@ -13,7 +13,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=8ed1a118f474eea5e159b560c339329b"
 INSANE_SKIP_${PN} += "license license-checksum"
 INSANE_SKIP_${PN} += "license"
 
-SRC_URI = "git://git@github.com/cu-ecen-aeld/assignments-3-and-later-PilotChalkanov.git;protocol=ssh;branch=main \
+SRC_URI = "git://git@github.com/cu-ecen-aeld/assignments-3-and-later-PilotChalkanov.git;protocol=ssh;branch=feature/assignment-9-chalkanov \
            file://aesdchar_start_stop.sh \
            "
 
