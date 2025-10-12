@@ -19,7 +19,7 @@ SRC_URI = "git://git@github.com/cu-ecen-aeld/assignments-3-and-later-PilotChalka
 
 # Modify these as desired
 PV = "1.0+git${SRCPV}"
-SRCREV = "da345013a11712bab743dadfd700dd6e0fcb715d"
+SRCREV = "09d6301272965708ddd6c31ac81e6e90853b7407"
 
 S = "${WORKDIR}/git"
 
